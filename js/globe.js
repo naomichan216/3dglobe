@@ -92,13 +92,13 @@ function initConfiguration(){
 function createDomElements(){
 	if(!isAvailableWEBGL) return;
 	
-	var preloaderSource = "<div id='globe-preloader'><img src='images/globe-preloader.gif' alt='preloader' width='32' height='32'>"
+	var preloaderSource = "<div id='globe-preloader'><img src='https://upload.wikimedia.org/wikipedia/commons/9/90/Globe-preloader.gif' alt='preloader' width='32' height='32'>"
 		+ "<br>"
 		+ "<span>loading…</span>"
 		+ "</div>";
 	
 	var autoRotateButtonSource = "<div id='globe-reset-button' class='hidden'>"
-		+ "<img src='images/reset_icon.png' alt='Reset icon'>"
+		+ "<img src='https://upload.wikimedia.org/wikipedia/commons/4/44/Reset_icon.png' alt='Reset icon'>"
 		+ "</div>";
 		
 	var shadowSource = "<img id='globe-shadow' src=''/>"
