@@ -1,0 +1,31 @@
+body {
+	margin: 100px;
+	background-color: #181818;
+	font-family: Verdana, Geneva, sans-serif;
+
+	font-family: "lato";
+}
+
+
+
+@media screen and (max-height:100VH), screen and (max-width:100VW)
+
+
+#panel{
+	position: relative;
+	background: #FFF;
+	margin: none;
+ 	padding: 20px 0 20px 0;
+	width: 100VH;
+	max-width: 100VW;
+	height: 100VH;
+	border: 0px solid #ccc;
+}
+
+
+#panel .globe-wrapper{
+	position: relative;
+	width: 500px;
+	margin: auto;
+}
+
