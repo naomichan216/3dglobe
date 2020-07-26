@@ -92,8 +92,7 @@ function initConfiguration(){
 function createDomElements(){
 	if(!isAvailableWEBGL) return;
 	
-	var preloaderSource = "<div id='globe-preloader'><img src='https://upload.wikimedia.org/wikipedia/commons/9/90/Globe-preloader.gif' alt='preloader' width='32' height='32'>"
-		+ "<br>"
+	var preloaderSource = "<div id='globe-preloader'><img src=''  width='0' height='0'>"
 		+ "<span>loading…</span>"
 		+ "</div>";
 	
