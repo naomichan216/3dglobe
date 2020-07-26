@@ -24,7 +24,6 @@ var currentEntry;
 
 var VERBOSE = false;
 var GLOBE_RADIUS = 550;
-var TEXTURES_DIRECTORY = "images";
 var DEFAULT_ROTATION_SPEED = 0.0015;
 var POI_RADIUS_RATIO = 0.015;
 var POI_HEIGHT_RATIO = 0.235;
@@ -119,40 +118,16 @@ function createDomElements(){
 /*    !THREE JS (shaders)     */
 /******************************/
 
-THREE.CloudsShader = {
-
-		vertexShader: [
-		
-		].join("\n"),
-
-		fragmentShader: [
-			
-		].join("\n")
-}
-
-THREE.HaloShader = {
-
-		vertexShader: [
-			
-		].join("\n"),
-
-		fragmentShader: [
-			
-		].join("\n")
-
-}
-
-
 THREE.EarthShader = {
 	
 		uniforms: THREE.UniformsUtils.merge( [
 
 			THREE.UniformsLib[ "common" ],
-			THREE.UniformsLib[ "bump" ],
+		
 			THREE.UniformsLib[ "normalmap" ],
-			THREE.UniformsLib[ "fog" ],
+			
 			THREE.UniformsLib[ "lights" ],
-			THREE.UniformsLib[ "shadowmap" ],
+	
 
 			{
 				"ambient"  : { type: "c", value: new THREE.Color( 0xffffff ) },
@@ -303,7 +278,7 @@ function initThree() {
 		renderer.setClearColor(0x000000, 0);
 		renderer.setSize( globeElementW, globeElementH );
 		
-		texturesToLoadCount = 5;
+		texturesToLoadCount = 1;
 	}  
 	else{
 		globeElement.prepend("WebGL is not available. Please update your browser or drivers for your video card!");
@@ -318,7 +293,7 @@ function collectUIElements(){
 }
 
 function initLights(){		
-	scene.add(new THREE.AmbientLight(0xCCCCCC));
+	scene.add(new THREE.AmbientLight(0xffffff));
 }
 
 function initChildren() {
@@ -341,8 +316,7 @@ function initChildren() {
 	
 	if (isAvailableWEBGL) {
 		initGlobe(sphereGeometry);
-		initHalo(sphereGeometry);
-		initClouds(sphereGeometry);
+	
 	}
 	else{
 		initGlobeSoftware(sphereGeometry);
@@ -358,48 +332,14 @@ function initGlobe(sphereGeometry){
 }
 
 
-function initHalo(sphereGeometry){
 
-}
-
-function initClouds(sphereGeometry){
-	var cloudsMap = THREE.ImageUtils.loadTexture(TEXTURES_DIRECTORY + "/earth_clouds.jpg", THREE.UVMapping, textureOnLoad);
-	cloudsMap.wrapS = cloudsMap.wrapT = THREE.RepeatWrapping;
-	
-	var cloudsMaterial = new THREE.ShaderMaterial({
-		uniforms: {
-			color: {type: 'c', value: new THREE.Color( 0xFFFFFF )},
-			time: {type: 'f', value: 0},
-			cloudsMap: {type: 't', value: cloudsMap}
-		},
-		
-		vertexShader: THREE.CloudsShader.vertexShader,
-		fragmentShader: THREE.CloudsShader.fragmentShader,
-		transparent: true,
-		depthWrite: false
-	});
-	
-	clouds = new THREE.Mesh( sphereGeometry, cloudsMaterial);
-	//clouds.position.z = -1000;
-	clouds.scale.multiplyScalar( 1.06 );
-	worldContainer.add( clouds );
-}
 
 function makeCustomEarthMaterial(){
 	var uniforms = THREE.EarthShader.uniforms;	
-	uniforms.map.value = THREE.ImageUtils.loadTexture( TEXTURES_DIRECTORY + "/black-01-01-01.png" , THREE.UVMapping, textureOnLoad);
+	THREE.ImageUtils.crossOrigin = '';
+    uniforms.map.value = THREE.ImageUtils.loadTexture("https://upload.wikimedia.org/wikipedia/commons/0/09/Black-01-01-01.png", THREE.UVMapping, textureOnLoad);
 	
-	uniforms.specularMap.value = THREE.ImageUtils.loadTexture(TEXTURES_DIRECTORY + "/earth_specular.png", THREE.UVMapping, textureOnLoad);
-	uniforms.shininess.value = 45;
 	
-	uniforms.bumpMap.value = THREE.ImageUtils.loadTexture(TEXTURES_DIRECTORY + "/earth_bump.png", THREE.UVMapping, textureOnLoad);
-	uniforms.bumpScale.value = 40;
-
-	//custom !!!
-	var waterTexture = THREE.ImageUtils.loadTexture(TEXTURES_DIRECTORY + "/water_displacement.jpg", THREE.UVMapping, textureOnLoad);
-	waterTexture.wrapS = waterTexture.wrapT = THREE.RepeatWrapping;
-	uniforms.time = {type: 'f', time: 0};
-	uniforms.time.value = 0;
 	
 	//custom !!!
 	var defines = {};
