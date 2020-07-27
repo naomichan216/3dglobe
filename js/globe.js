@@ -319,7 +319,7 @@ function initGlobe(sphereGeometry){
 function makeCustomEarthMaterial(){
 	var uniforms = THREE.EarthShader.uniforms;	
 	THREE.ImageUtils.crossOrigin = '';
-    uniforms.map.value = THREE.ImageUtils.loadTexture("https://upload.wikimedia.org/wikipedia/commons/0/0b/Black-01.png", THREE.UVMapping, textureOnLoad);
+    uniforms.map.value = THREE.ImageUtils.loadTexture("https://upload.wikimedia.org/wikipedia/commons/1/17/Black-01-01.png", THREE.UVMapping, textureOnLoad);
 
 	
 	//custom !!!
