@@ -180,12 +180,10 @@ THREE.EarthShader = {
 		fragmentShader: [
 			"#extension GL_OES_standard_derivatives : enable",
 			
-			"uniform vec3 diffuse;",
+		
 			"uniform float opacity;",
-
 			"uniform vec3 ambient;",
 			"uniform vec3 emissive;",
-			"uniform vec3 specular;",
 			"uniform float shininess;",
 
 			THREE.ShaderChunk[ "color_pars_fragment" ],
@@ -200,7 +198,7 @@ THREE.EarthShader = {
 			
 	
 			THREE.ShaderChunk[ "normalmap_pars_fragment" ],
-			THREE.ShaderChunk[ "specularmap_pars_fragment" ],
+		
 
 			"void main() {",
 
@@ -208,7 +206,7 @@ THREE.EarthShader = {
 
 				THREE.ShaderChunk[ "map_fragment" ],
 				THREE.ShaderChunk[ "alphatest_fragment" ],
-				THREE.ShaderChunk[ "specularmap_fragment" ],
+			
 
 				THREE.ShaderChunk[ "lights_phong_fragment" ],
 
@@ -329,20 +327,16 @@ function initGlobe(sphereGeometry){
 }
 
 
-
-
 function makeCustomEarthMaterial(){
 	var uniforms = THREE.EarthShader.uniforms;	
 	THREE.ImageUtils.crossOrigin = '';
     uniforms.map.value = THREE.ImageUtils.loadTexture("https://upload.wikimedia.org/wikipedia/commons/0/09/Black-01-01-01.png", THREE.UVMapping, textureOnLoad);
-	
-	
+
 	
 	//custom !!!
 	var defines = {};
 	defines[ "PHONG" ] = "";
 	defines[ "USE_MAP" ] = "";
-	defines[ "USE_SPECULARMAP" ] = "";
 	
 	
 	return new THREE.ShaderMaterial({
