@@ -130,9 +130,7 @@ THREE.EarthShader = {
 
 			{
 				"ambient"  : { type: "c", value: new THREE.Color( 0xffffff ) },
-				"emissive" : { type: "c", value: new THREE.Color( 0x000000 ) },
-				"specular" : { type: "c", value: new THREE.Color( 0x111111 ) },
-				"shininess": { type: "f", value: 30 },
+				"shininess": { type: "f", value: 0 },
 				"wrapRGB"  : { type: "v3", value: new THREE.Vector3( 1, 1, 1 ) }
 			}
 
