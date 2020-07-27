@@ -79,13 +79,6 @@ function initConfiguration(){
 		GLOBE_RADIUS = parseInt(radiusAttr);
 	}
 	
-	// set textures directory
-	var texturesDirectoryAttr = globeElement.attr("textures-directory");
-	if(texturesDirectoryAttr){
-		TEXTURES_DIRECTORY = texturesDirectoryAttr;
-	}
-
-
 	return globeElement;
 }
 
@@ -100,7 +93,6 @@ function createDomElements(){
 		+ "<img src='https://upload.wikimedia.org/wikipedia/commons/4/44/Reset_icon.png' alt='Reset icon'>"
 		+ "</div>";
 		
-	var shadowSource = "<img id='globe-shadow' src=''/>"
 	
 	var poiLabelSource = "<div id='globe-poi-label'>"
 		+ "<span>Cape of Good Hope</span>"
@@ -108,7 +100,6 @@ function createDomElements(){
 		+ "</div>"
 	
 	globeElement.append(preloaderSource);
-	globeElement.append(shadowSource);
 	globeElement.append(autoRotateButtonSource);
 	globeElement.append(poiLabelSource);
 }
@@ -130,7 +121,6 @@ THREE.EarthShader = {
 
 			{
 				"ambient"  : { type: "c", value: new THREE.Color( 0xffffff ) },
-				"shininess": { type: "f", value: 0 },
 				"wrapRGB"  : { type: "v3", value: new THREE.Vector3( 1, 1, 1 ) }
 			}
 
@@ -184,7 +174,7 @@ THREE.EarthShader = {
 			"uniform float opacity;",
 			"uniform vec3 ambient;",
 			"uniform vec3 emissive;",
-			"uniform float shininess;",
+	
 
 			THREE.ShaderChunk[ "color_pars_fragment" ],
 			THREE.ShaderChunk[ "map_pars_fragment" ],
@@ -270,7 +260,6 @@ function initThree() {
 		
 		renderer.autoClear = false;
 		renderer.clear();
-		renderer.setClearColor(0x000000, 0);
 		renderer.setSize( globeElementW, globeElementH );
 		
 		texturesToLoadCount = 1;
@@ -398,7 +387,6 @@ function textureOnLoad(t){
 	if(texturesToLoadCount==loadedTexturesCount){
 		if(VERBOSE) console.log("All textures has been loaded.");
 		
-		document.getElementById("globe-shadow").style.display = "block";
 		scene.add(worldContainer);
 		backScene.add(backWorldContainer);
 		worldContainer.add(poiContainer);
