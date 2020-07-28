@@ -1,12 +1,7 @@
 body {
 	margin: 50px;
 	background-color: #181818;
-	font-family: Verdana, Geneva, sans-serif;
-
-	font-family: "lato";
-}
-
-@font-face {
+	@font-face {
     font-family: 'Myriad';
     src: url('Myriad-Italic.woff2') format('woff2'),
         url('Myriad-Italic.woff') format('woff');
@@ -14,6 +9,9 @@ body {
     font-style: italic;
     font-display: swap;
 }
+
+}
+
 
 
 @media screen and (max-height:540px), screen and (max-width:350px)
