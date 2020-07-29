@@ -674,7 +674,7 @@ function onPoi3DClick(poiData){
 			break;
 			
 		case "link":
-			open(poiData.actionParameter);
+			open(poiData.actionParameter,'_self');
 			break;
 				
 		case "callback":
